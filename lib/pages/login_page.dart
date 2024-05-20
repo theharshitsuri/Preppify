@@ -1,5 +1,5 @@
-import "package:flutter/material.dart";
-import "package:preppify/utils/routes.dart";
+import 'package:flutter/material.dart';
+import 'package:preppify/utils/routes.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -28,106 +28,121 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    // ignore: prefer_const_constructors
-    return SafeArea(
-      child: Material(
-          color: Colors.white,
-          // ignore: prefer_const_constructors
-          child: SingleChildScrollView(
-            child: Form(
-              key: _formKey,
+    return Scaffold(
+      backgroundColor: Color(0xFF121212), // Dark background color
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Form(
+            key: _formKey,
+            child: Padding(
+              padding:
+                  const EdgeInsets.symmetric(vertical: 16.0, horizontal: 32.0),
               child: Column(
-                // ignore: sort_child_properties_last
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  //Image.asset("assets/images/login_image.png",
-                  //fit: BoxFit.cover, alignment: Alignment.center),
-                  // ignore: prefer_const_constructors
-                  SizedBox(height: 20.0),
-                  // ignore: prefer_const_constructors
-                  Text("Welcome $name",
-                      // ignore: prefer_const_constructors
-                      style: TextStyle(
-                          fontSize: 24,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.blue)),
-                  // ignore: prefer_const_constructors
-                  SizedBox(height: 20.0),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                        vertical: 16.0, horizontal: 32.0),
-                    child: Column(
-                      children: [
-                        TextFormField(
-                          // ignore: prefer_const_constructors
-                          decoration: InputDecoration(
-                            hintText: "Enter Username",
-                            labelText: "Username",
-                          ),
-                          validator: (value) {
-                            if (value?.isEmpty ?? true) {
-                              return "Username cannot be empty";
-                            } else {
-                              return null;
-                            }
-                          },
-                          onChanged: (value) {
-                            setState(() {
-                              name = value;
-                            });
-                          },
-                        ),
-                        TextFormField(
-                            obscureText: true,
-                            // ignore: prefer_const_constructors
-                            decoration: InputDecoration(
-                              hintText: "Enter Password",
-                              labelText: "Password",
-                            ),
-                            validator: (value) {
-                              if (value?.isEmpty ?? true) {
-                                return "Password cannot be empty";
-                              } else if (value != null && value.length < 6) {
-                                return "Password length should be atleast 6";
-                              } else {
-                                return null;
-                              }
-                            }),
-                      ],
+                  SizedBox(height: 40.0), // Added extra space at the top
+                  Text(
+                    "Welcome $name",
+                    style: TextStyle(
+                      fontSize: 28,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white, // White color for contrast
                     ),
                   ),
-                  // ignore: prefer_const_constructors
-                  SizedBox(
-                    height: 20.0,
+                  SizedBox(height: 20.0),
+                  Text(
+                    "Please login to continue",
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: Colors.white70, // Slightly lighter text
+                    ),
                   ),
+                  SizedBox(height: 40.0),
+                  TextFormField(
+                    style: TextStyle(color: Colors.white), // White text input
+                    decoration: InputDecoration(
+                      hintText: "Enter Username",
+                      hintStyle: TextStyle(color: Colors.white70),
+                      labelText: "Username",
+                      labelStyle: TextStyle(color: Colors.white),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.blue),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.white70),
+                      ),
+                    ),
+                    validator: (value) {
+                      if (value?.isEmpty ?? true) {
+                        return "Username cannot be empty";
+                      } else {
+                        return null;
+                      }
+                    },
+                    onChanged: (value) {
+                      setState(() {
+                        name = value;
+                      });
+                    },
+                  ),
+                  SizedBox(height: 20.0),
+                  TextFormField(
+                    obscureText: true,
+                    style: TextStyle(color: Colors.white), // White text input
+                    decoration: InputDecoration(
+                      hintText: "Enter Password",
+                      hintStyle: TextStyle(color: Colors.white70),
+                      labelText: "Password",
+                      labelStyle: TextStyle(color: Colors.white),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.blue),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.white70),
+                      ),
+                    ),
+                    validator: (value) {
+                      if (value?.isEmpty ?? true) {
+                        return "Password cannot be empty";
+                      } else if (value != null && value.length < 6) {
+                        return "Password length should be at least 6";
+                      } else {
+                        return null;
+                      }
+                    },
+                  ),
+                  SizedBox(height: 40.0),
                   Material(
                     color: Colors.blue,
                     borderRadius: BorderRadius.circular(8),
                     child: InkWell(
                       onTap: () => moveToHome(context),
                       child: AnimatedContainer(
-                        // ignore: prefer_const_constructors
                         duration: Duration(seconds: 1),
                         width: changeButton ? 100 : 150,
-                        height: 40,
+                        height: 50,
                         alignment: Alignment.center,
-                        // ignore: prefer_const_constructors, sort_child_properties_last
                         child: changeButton
-                            ? Icon(Icons.done)
-                            // ignore: prefer_const_constructors
+                            ? Icon(Icons.done, color: Colors.white)
                             : Text(
                                 "Login",
-                                // ignore: prefer_const_constructors
                                 style: TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold),
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18,
+                                ),
                               ),
                       ),
                     ),
                   ),
+                  SizedBox(height: 20.0), // Extra space at the bottom
                 ],
               ),
             ),
-          )),
+          ),
+        ),
+      ),
     );
   }
 }
