@@ -1,15 +1,15 @@
-import "package:flutter/material.dart";
-import "package:preppify/pages/chatbot_page.dart";
-import "package:preppify/pages/home_page.dart";
-import "package:preppify/pages/login_page.dart";
-//import "package:preppify/pages/logo_page.dart";
+import 'package:flutter/material.dart';
+import 'package:preppify/pages/chatbot_page.dart';
+import 'package:preppify/pages/home_page.dart';
+import 'package:preppify/pages/login_page.dart';
+import 'package:preppify/utils/routes.dart';
 
 void main() {
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key});
+  const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -17,14 +17,10 @@ class MyApp extends StatelessWidget {
       themeMode: ThemeMode.dark,
       debugShowCheckedModeBanner: false,
       routes: {
-        // ignore: prefer_const_constructors
-        "/": (context) => ChatbotPage(),
-        // ignore: prefer_const_constructors
-        //MyRoutes.homeRoute: (context) => HomePage(),
-        // ignore: prefer_const_constructors
-        //MyRoutes.loginRoute: (context) => LoginPage(),
-        // ignore: prefer_const_constructors
-        //MyRoutes.cartRoute: (context) => CartPage(),
+        "/": (context) => LoginPage(),
+        MyRoutes.homeRoute: (context) => HomePage(),
+        MyRoutes.loginRoute: (context) => LoginPage(),
+        MyRoutes.chatbotRoute: (context) => ChatbotPage(),
       },
     );
   }

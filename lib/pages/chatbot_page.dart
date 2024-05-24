@@ -45,8 +45,7 @@ class _ChatbotPageState extends State<ChatbotPage> {
       Uri.parse('https://api.openai.com/v1/chat/completions'), // API endpoint
       headers: {
         'Content-Type': 'application/json',
-        'Authorization':
-            'Bearer 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', // API key
+        'Authorization': 'Bearer API KEY', // API key
       },
       body: json.encode({
         'model': 'gpt-3.5-turbo',
@@ -80,16 +79,22 @@ class _ChatbotPageState extends State<ChatbotPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFF1F1F1F), // Dark background color
+      backgroundColor: Colors.black, // Dark background color
       appBar: AppBar(
-        backgroundColor: Color(0xFF1F1F1F), // Matching dark color for app bar
+        backgroundColor: Colors.black, // Matching dark color for app bar
         title: Text(
           "Preppify",
           style: TextStyle(
             fontWeight: FontWeight.bold,
-            fontSize: 24,
+            fontSize: 32,
             color: Colors.white,
+            fontFamily: 'Montserrat',
           ),
+        ),
+        centerTitle: true,
+        elevation: 0,
+        iconTheme: IconThemeData(
+          color: Colors.white, // Change the color of the back button here
         ),
       ),
       body: Padding(
@@ -113,22 +118,19 @@ class _ChatbotPageState extends State<ChatbotPage> {
                         decoration: BoxDecoration(
                           color: _messages[index]['role'] == 'user'
                               ? Colors.blueAccent // User's message color
-                              : Colors.black,
-                          // Bot's message color
+                              : Color(0xFF1E1E1E), // Bot's message color
                           borderRadius: BorderRadius.circular(16.0),
                         ),
                         child: Text(
                           _messages[index]['content']!,
                           style: TextStyle(
                             color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 18.0, // Increase the font size
+                            fontWeight: FontWeight.w500,
+                            fontSize: 16.0, // Font size
                             letterSpacing:
                                 1.2, // Add letter spacing for better readability
-                            fontFamily:
-                                'Roboto', // Specify a font family if needed
+                            fontFamily: 'Montserrat', // Specify a font family
                           ),
-                          // Text color
                         ),
                       ),
                     ),
@@ -157,7 +159,7 @@ class _ChatbotPageState extends State<ChatbotPage> {
                         hintStyle:
                             TextStyle(color: Colors.white70), // Hint text color
                         border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(8.0),
+                          borderRadius: BorderRadius.circular(16.0),
                           borderSide: BorderSide.none,
                         ),
                         contentPadding: EdgeInsets.symmetric(
